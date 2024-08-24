@@ -13,4 +13,4 @@
 #define MK_KINETIC_WHEEL_MAXS 1
 #define MK_KINETIC_WHEEL_ACCN 16
 
-#define MS_J_MARGIN 0.1f
+// #define MS_J_MARGIN 0.1f

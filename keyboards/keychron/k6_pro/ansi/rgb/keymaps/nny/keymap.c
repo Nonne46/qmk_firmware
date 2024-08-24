@@ -2,7 +2,7 @@
 #include "keycodes.h"
 #include "quantum.h"
 #include "quantum/leader.h"
-#include "quantum/digitizer.h"
+// #include "quantum/digitizer.h"
 
 #include QMK_KEYBOARD_H
 #include "common.h"
@@ -14,64 +14,64 @@ void keyboard_post_init_user(void) {
 
 static uint16_t lead_mo_timer = 0;
 
-bool process_mouse_jumps(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        float x = 0.0f;
-        float y = 0.0f;
+// bool process_mouse_jumps(uint16_t keycode, keyrecord_t *record) {
+//     if (record->event.pressed) {
+//         float x = 0.0f;
+//         float y = 0.0f;
 
-        switch (keycode) {
-            case KC_MOUSE_TOP_CENTER: // Top Center
-                x = 0.5f;
-                y = MS_J_MARGIN;
-                break;
-            case KC_MOUSE_TOP_LEFT: // Top Left Corner
-                x = MS_J_MARGIN;
-                y = MS_J_MARGIN;
-                break;
-            case KC_MOUSE_TOP_RIGHT: // Top Right Corner
-                x = 1.0f - MS_J_MARGIN;
-                y = MS_J_MARGIN;
-                break;
-            case KC_MOUSE_CENTER: // Center
-                x = 0.5f;
-                y = 0.5f;
-                break;
-            case KC_MOUSE_CENTER_LEFT: // Center Left
-                x = MS_J_MARGIN;
-                y = 0.5f;
-                break;
-            case KC_MOUSE_CENTER_RIGHT: // Center Right
-                x = 1.0f - MS_J_MARGIN;
-                y = 0.5f;
-                break;
-            case KC_MOUSE_BOTTOM_CENTER: // Bottom Center
-                x = 0.5f;
-                y = 1.0f - MS_J_MARGIN;
-                break;
-            case KC_MOUSE_BOTTOM_LEFT: // Bottom Left Corner
-                x = MS_J_MARGIN;
-                y = 1.0f - MS_J_MARGIN;
-                break;
-            case KC_MOUSE_BOTTOM_RIGHT: // Bottom Right Corner
-                x = 1.0f - MS_J_MARGIN;
-                y = 1.0f - MS_J_MARGIN;
-                break;
-            default:
-                return true;
-        }
+//         switch (keycode) {
+//             case KC_MOUSE_TOP_CENTER: // Top Center
+//                 x = 0.5f;
+//                 y = MS_J_MARGIN;
+//                 break;
+//             case KC_MOUSE_TOP_LEFT: // Top Left Corner
+//                 x = MS_J_MARGIN;
+//                 y = MS_J_MARGIN;
+//                 break;
+//             case KC_MOUSE_TOP_RIGHT: // Top Right Corner
+//                 x = 1.0f - MS_J_MARGIN;
+//                 y = MS_J_MARGIN;
+//                 break;
+//             case KC_MOUSE_CENTER: // Center
+//                 x = 0.5f;
+//                 y = 0.5f;
+//                 break;
+//             case KC_MOUSE_CENTER_LEFT: // Center Left
+//                 x = MS_J_MARGIN;
+//                 y = 0.5f;
+//                 break;
+//             case KC_MOUSE_CENTER_RIGHT: // Center Right
+//                 x = 1.0f - MS_J_MARGIN;
+//                 y = 0.5f;
+//                 break;
+//             case KC_MOUSE_BOTTOM_CENTER: // Bottom Center
+//                 x = 0.5f;
+//                 y = 1.0f - MS_J_MARGIN;
+//                 break;
+//             case KC_MOUSE_BOTTOM_LEFT: // Bottom Left Corner
+//                 x = MS_J_MARGIN;
+//                 y = 1.0f - MS_J_MARGIN;
+//                 break;
+//             case KC_MOUSE_BOTTOM_RIGHT: // Bottom Right Corner
+//                 x = 1.0f - MS_J_MARGIN;
+//                 y = 1.0f - MS_J_MARGIN;
+//                 break;
+//             default:
+//                 return true;
+//         }
 
-        digitizer_in_range_on();
-        digitizer_set_position(x, y);
-        digitizer_in_range_off();
-        digitizer_flush();
-        return false;
-    }
+//         digitizer_in_range_on();
+//         digitizer_set_position(x, y);
+//         digitizer_in_range_off();
+//         digitizer_flush();
+//         return false;
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_mouse_jumps(keycode, record)) return false;
+    // if (!process_mouse_jumps(keycode, record)) return false;
 
     switch (keycode) {
         case KC_LOL:
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS, KC_HOME,
      KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,  KC_PGUP,
      KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,    KC_PGDN,
-     KC_LCTL,  KC_LGUI,  MO(MOUSE_MODE),                                KC_SPC,                       KC_RALT, MO(WIN_FN1), KC_MO_LEAD, KC_LEFT,  KC_DOWN, KC_RGHT),
+     KC_LCTL,  KC_LGUI, KC_LALT,                                KC_SPC,                       KC_RALT, MO(WIN_FN1), KC_MO_LEAD, KC_LEFT,  KC_DOWN, KC_RGHT),
 
 [MAC_FN1] = LAYOUT_ansi_68(
      KC_GRV,   KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_TRNS,  RGB_TOG,
@@ -155,12 +155,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
 
-[MOUSE_MODE] = LAYOUT_ansi_68(
-     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_MOUSE_TOP_LEFT,  KC_MOUSE_TOP_CENTER,  KC_MOUSE_TOP_RIGHT,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_MS_U,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_MOUSE_CENTER_LEFT,  KC_MOUSE_CENTER,  KC_MOUSE_CENTER_RIGHT,  KC_TRNS,  KC_TRNS,  KC_WH_D,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_U,  KC_TRNS,            KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_MOUSE_BOTTOM_LEFT,  KC_MOUSE_BOTTOM_CENTER,  KC_MOUSE_BOTTOM_RIGHT,  KC_TRNS,  KC_TRNS,  KC_BTN1,  KC_BTN2,  KC_BTN3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
+// [MOUSE_MODE] = LAYOUT_ansi_68(
+//      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+//      KC_TRNS,  KC_MOUSE_TOP_LEFT,  KC_MOUSE_TOP_CENTER,  KC_MOUSE_TOP_RIGHT,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_MS_U,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+//      KC_TRNS,  KC_MOUSE_CENTER_LEFT,  KC_MOUSE_CENTER,  KC_MOUSE_CENTER_RIGHT,  KC_TRNS,  KC_TRNS,  KC_WH_D,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_U,  KC_TRNS,            KC_TRNS,  KC_TRNS,
+//      KC_TRNS,  KC_MOUSE_BOTTOM_LEFT,  KC_MOUSE_BOTTOM_CENTER,  KC_MOUSE_BOTTOM_RIGHT,  KC_TRNS,  KC_TRNS,  KC_BTN1,  KC_BTN2,  KC_BTN3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+//      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
 [MASTERMOUSE_MODE] = LAYOUT_ansi_68(
      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
